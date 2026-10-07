@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEAE3;
+    --ink:#1F1B16;
+    --petrol:#6E1F24;
+    --mustard:#D8A24A;
+    --line: rgba(31,27,22,0.15);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:300;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--mustard); color:var(--ink); }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.4rem clamp(1.2rem,4vw,3rem);
+    background:rgba(237,234,227,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    letter-spacing:-0.02em;
+  }
+  nav{display:flex; gap:clamp(1rem,3vw,2.2rem);}
+  nav a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:0.85rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-weight:500;
+    opacity:0.7;
+    transition:opacity .2s;
+  }
+  nav a:hover{ opacity:1; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:78vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:2rem clamp(1.2rem,4vw,3rem);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    color:var(--petrol);
+    text-transform:uppercase;
+    margin-bottom:1.2rem;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(2.6rem, 8vw, 6rem);
+    line-height:0.98;
+    letter-spacing:-0.02em;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:300;
+    color:var(--petrol);
+  }
+  .hero p{
+    max-width:42ch;
+    margin-top:1.6rem;
+    font-size:1.05rem;
+    opacity:0.75;
+  }
+  .sprocket{
+    position:absolute;
+    right:clamp(1rem,5vw,5rem);
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction:column;
+    gap:0.9rem;
+    opacity:0.5;
+  }
+  .sprocket div{
+    width:14px; height:14px;
+    border:2px solid var(--ink);
+    border-radius:3px;
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section-head{
+    display:flex; align-items:baseline; gap:1rem;
+    padding:0 clamp(1.2rem,4vw,3rem);
+    margin:5rem 0 2rem;
+  }
+  .section-head .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:var(--petrol);
+  }
+  .section-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(1.6rem,3.5vw,2.4rem);
+  }
+  .section-head::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---------- WORK GRID (filmstrip) ---------- */
+  .reel{
+    padding:0 clamp(1.2rem,4vw,3rem) 2rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+    gap:1.6rem;
+  }
+  .frame{
+    position:relative;
+    background:var(--ink);
+    border-radius:4px;
+    overflow:hidden;
+    aspect-ratio:16/10;
+  }
+  .frame video, .frame .placeholder{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .frame .placeholder{
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(237,234,227,0.35);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    text-align:center;
+    padding:1rem;
+    background:
+      repeating-linear-gradient(135deg, rgba(237,234,227,0.04) 0 2px, transparent 2px 10px);
+  }
+  .frame .tag{
+    position:absolute; top:0.8rem; left:0.8rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--mustard);
+    background:rgba(31,27,22,0.55);
+    padding:0.25rem 0.55rem;
+    border-radius:2px;
+  }
+  .caption{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:0.7rem;
+  }
+  .caption h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+  }
+  .caption span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    opacity:0.55;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    padding:2rem clamp(1.2rem,4vw,3rem) 5rem;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:3rem;
+  }
+  .about p{
+    font-size:1.15rem;
+    font-weight:300;
+    max-width:56ch;
+    opacity:0.85;
+  }
+  .about .meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    display:flex; flex-direction:column; gap:0.7rem;
+    border-left:1px solid var(--line);
+    padding-left:1.4rem;
+  }
+  .about .meta strong{ color:var(--petrol); }
+
+  /* ---------- EXPERIENCE ---------- */
+  .experience{
+    padding:0 clamp(1.2rem,4vw,3rem) 3rem;
+  }
+  .exp-group{ margin-bottom:2.6rem; }
+  .exp-group:last-child{ margin-bottom:0; }
+  .exp-group-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin-bottom:1.1rem;
+  }
+  .exp-item{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:1.6rem;
+    padding:1.15rem 0;
+    border-top:1px solid var(--line);
+  }
+  .exp-group:last-of-type .exp-item:last-child{
+    border-bottom:1px solid var(--line);
+  }
+  .exp-date{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    opacity:0.6;
+    padding-top:0.15rem;
+  }
+  .exp-role h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+    margin-bottom:0.4rem;
+  }
+  .exp-role p{
+    font-size:0.92rem;
+    opacity:0.75;
+    max-width:62ch;
+  }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    padding:3.5rem clamp(1.2rem,4vw,3rem) 2.5rem;
+    border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;
+  }
+  footer h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(1.8rem,4vw,2.8rem);
+    max-width:12ch;
+  }
+  .links{ display:flex; flex-direction:column; gap:0.6rem; }
+  .links a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:0.95rem;
+    border-bottom:1px solid var(--line);
+    padding-bottom:0.15rem;
+    width:fit-content;
+  }
+  .links a:hover{ border-color:var(--ink); }
+  .fineprint{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    opacity:0.45;
+    margin-top:2rem;
+  }
+
+  @media (max-width:720px){
+    nav{ display:none; }
+    .about{ grid-template-columns:1fr; }
+    .sprocket{ display:none; }
+    .exp-item{ grid-template-columns:1fr; gap:0.35rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Ana Vitória Porto</div>
+  <nav>
+    <a href="#trabalhos">Trabalhos</a>
+    <a href="#experiencia">Experiência</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Jornalismo</div>
+  <h1>Pessoas —<br><em>Criatividade</em> — Histórias.</h1>
+  <p>Histórias existem para serem contadas.</p>
+  <div class="sprocket">
+    <div></div><div></div><div></div><div></div><div></div>
+  </div>
+</section>
+
+<div class="section-head">
+  <span class="num">01</span>
+  <h2 id="trabalhos">Trabalhos</h2>
+</div>
+
+<div class="reel">
+
+  <div>
+    <div class="frame">
+      <span class="tag">Documentário</span>
+      <iframe src="https://www.youtube.com/embed/6scsSg-adMc?si=s5nn0AIyxduvypc0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width:100%; height:100%; display:block;"></iframe>
+    </div>
+    <div class="caption">
+      <h3>Documentário — TCC de Jornalismo</h3>
+      <span>2026</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="frame">
+      <iframe src="https://www.youtube.com/embed/5QFpy6eG1zw?si=ztMEninYkSoc2p3E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width:100%; height:100%; display:block;"></iframe>
+    </div>
+    <div class="caption">
+      <h3>Se Liga TV: Matéria sobre a Toca do Tamanduá</h3>
+      <span>2026</span>
+    </div>
+  </div>
+
+  <div>
+    <a href="https://www.sucessofm.com/2026/09/17/de-divinopolis-para-o-mundo-atleta-e-aprovado-em-teste-do-cruzeiro-e-vai-jogar-no-exterior/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+      <div class="frame" style="background-image:url('https://www.sucessofm.com/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-17-at-09.48.43.jpeg'); background-size:cover; background-position:center; position:relative;">
+        <span class="tag">Reportagem</span>
+        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(31,27,22,0.85), rgba(31,27,22,0.1) 55%); display:flex; align-items:flex-end; padding:1rem;">
+          <span style="color:var(--paper); font-family:'IBM Plex Mono', monospace; font-size:0.78rem; opacity:0.85;">Leia no Portal Sucesso FM →</span>
+        </div>
+      </div>
+      <div class="caption">
+        <h3>De Divinópolis para o mundo: atleta aprovado em teste do Cruzeiro</h3>
+        <span>2026</span>
+      </div>
+    </a>
+  </div>
+
+
+  <div>
+    <div class="frame">
+      <span class="tag">Playlist</span>
+      <iframe src="https://www.youtube.com/embed/videoseries?list=PLhTLcpkxtFpIYDVQNYctN5HGuGhdBhBuV" title="Playlist no YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width:100%; height:100%; display:block;"></iframe>
+    </div>
+    <div class="caption">
+      <h3>Entrevista com artistas</h3>
+      <span>YouTube</span>
+    </div>
+  </div>
+
+  <div>
+    <a href="https://www.instagram.com/reel/DZyDFNAI5lz/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+      <div class="frame" style="background:var(--petrol); display:flex; align-items:center; justify-content:center;">
+        <span class="tag">Instagram</span>
+        <span style="color:var(--paper); font-family:'IBM Plex Mono', monospace; font-size:0.85rem; opacity:0.85;">Ver reel no Instagram →</span>
+      </div>
+      <div class="caption">
+        <h3>Reel no Instagram</h3>
+        <span>2026</span>
+      </div>
+    </a>
+  </div>
+
+  <div>
+    <a href="https://www.sucessofm.com/2026/09/11/capoeiristas-de-divinopolis-sao-convocados-para-a-selecao-brasileira-de-capoeira/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+      <div class="frame" style="background-image:url('https://www.sucessofm.com/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-10-at-16.40.50.jpeg'); background-size:cover; background-position:center; position:relative;">
+        <span class="tag">Reportagem</span>
+        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(31,27,22,0.85), rgba(31,27,22,0.1) 55%); display:flex; align-items:flex-end; padding:1rem;">
+          <span style="color:var(--paper); font-family:'IBM Plex Mono', monospace; font-size:0.78rem; opacity:0.85;">Leia no Portal Sucesso FM →</span>
+        </div>
+      </div>
+      <div class="caption">
+        <h3>Capoeiristas de Divinópolis convocados para a Seleção Brasileira</h3>
+        <span>2026</span>
+      </div>
+    </a>
+  </div>
+
+  <div>
+    <div class="frame">
+      <span class="tag">Playlist</span>
+      <iframe src="https://www.youtube.com/embed/videoseries?list=PLhTLcpkxtFpIX9XY2eB-qn1ag7JvWu03K" title="Playlist no YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width:100%; height:100%; display:block;"></iframe>
+    </div>
+    <div class="caption">
+      <h3>Playlist</h3>
+      <span>YouTube</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="frame">
+      <iframe src="https://www.youtube.com/embed/DJFciNfJ-Ks" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width:100%; height:100%; display:block;"></iframe>
+    </div>
+    <div class="caption">
+      <h3>Vídeo</h3>
+      <span>2026</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="frame">
+      <span class="tag">TV</span>
+      <iframe src="https://www.youtube.com/embed/lhXrrufxPWI" title="Apresentação de TV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width:100%; height:100%; display:block;"></iframe>
+    </div>
+    <div class="caption">
+      <h3>Apresentação de TV</h3>
+      <span>2026</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="frame">
+      <span class="tag">Rádio</span>
+      <iframe src="https://www.youtube.com/embed/kYmzS580muA" title="Apresentação de rádio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width:100%; height:100%; display:block;"></iframe>
+    </div>
+    <div class="caption">
+      <h3>Apresentação de rádio</h3>
+      <span>2026</span>
+    </div>
+  </div>
+
+  <div>
+    <a href="https://www.instagram.com/reel/Dd7ALAjh1HS/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+      <div class="frame" style="background:var(--petrol); display:flex; align-items:center; justify-content:center;">
+        <span class="tag">Instagram</span>
+        <span style="color:var(--paper); font-family:'IBM Plex Mono', monospace; font-size:0.85rem; opacity:0.85;">Ver reel no Instagram →</span>
+      </div>
+      <div class="caption">
+        <h3>Flashes rápidos informativos</h3>
+        <span>2026</span>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+<div class="about" id="sobre">
+  <div>
+    <p>Sou formada em Jornalismo pela Universidade do Estado de Minas Gerais (Uemg) e tenho 23 anos.</p>
+    <p style="margin-top:1.1rem;">Atuo na área da comunicação com experiência em jornalismo, rádio, televisão, assessoria, jornal impresso e produção audiovisual.</p>
+    <p style="margin-top:1.1rem;">Tenho facilidade para falar em público, excelente comunicação e boa escrita.</p>
+    <p style="margin-top:1.1rem;">Apaixonada por contar histórias, busco desenvolver conteúdos informativos, criativos e de qualidade, sempre aliando técnica, dinamismo e uma comunicação clara para conectar pessoas e histórias.</p>
+  </div>
+  <div class="meta">
+    <div class="exp-group-title" style="margin-bottom:0.3rem;">Redes sociais</div>
+    <div class="links">
+      <a href="https://instagram.com/anavitoriaporto" target="_blank" rel="noopener">@anavitoriaporto</a>
+      <a href="https://lnkd.in/p/dC2yacqJ" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://substack.com/@anavitoriaporto" target="_blank" rel="noopener">Substack</a>
+      <a href="mailto:portoanavitoria@gmail.com">portoanavitoria@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<div class="section-head">
+  <span class="num">02</span>
+  <h2 id="experiencia">Experiência</h2>
+</div>
+
+<div class="experience">
+
+  <div class="exp-group">
+    <div class="exp-group-title">Experiência profissional</div>
+
+    <div class="exp-item">
+      <div class="exp-date">jan/2026 — atual</div>
+      <div class="exp-role">
+        <h4>Se Liga TV</h4>
+        <p>Apresentação do programa Se Liga; gravação de reportagens.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">mai/2025</div>
+      <div class="exp-role">
+        <h4>Rádio Sucesso FM</h4>
+        <p>Apresentação do jornal "Sucesso Meio Dia"; apresentação dos quadros "Tá na Rede" e "Viver Bem"; gravação e edição de reportagens para o Instagram; cobertura de eventos; redação.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">jan/2022</div>
+      <div class="exp-role">
+        <h4>Cegesp</h4>
+        <p>Criação de conteúdo para a escola de esportes Cegesp; captação de imagens; design; edição de vídeos; organização de eventos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-group">
+    <div class="exp-group-title">Estágios durante o curso</div>
+
+    <div class="exp-item">
+      <div class="exp-date">dez/2025 — abr/2026</div>
+      <div class="exp-role">
+        <h4>Jornal Agora</h4>
+        <p>Gravação e edição de reportagens para o Instagram; redação para site e jornal impresso.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">jul/2024 — nov/2024</div>
+      <div class="exp-role">
+        <h4>TV Alterosa</h4>
+        <p>Produção; gravação de offs; técnica de áudio.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">nov/2022 — jun/2024</div>
+      <div class="exp-role">
+        <h4>Prefeitura de Divinópolis</h4>
+        <p>Redação; organização de eventos; cobertura de eventos da Prefeitura.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer id="contato">
+  <h2>Vamos conversar.</h2>
+  <div class="links">
+    <a href="mailto:portoanavitoria@gmail.com">portoanavitoria@gmail.com</a>
+    <a href="https://wa.me/5537999120101" target="_blank" rel="noopener">(37) 99912-0101 — WhatsApp</a>
+    <p style="font-family:'IBM Plex Mono', monospace; font-size:0.78rem; opacity:0.6; margin-top:0.6rem; max-width:32ch;">Tenho trabalhos nos reels do Instagram e publicações no LinkedIn.</p>
+  </div>
+  <div class="fineprint">© 2026 Ana Vitória Porto. Site pessoal.</div>
+</footer>
+
+</body>
+</html>
